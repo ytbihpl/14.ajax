@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        <input type="text" id="username">
+    </p>
+    <p>
+        <input type="text" id="age">
+    </p>
+    <p>
+        <input type="button" id="btn" value="提交">
+    </p>
+    <script type="text/javascript">
+        //获取按钮元素
+        var btn = document.getElementById('btn');
+        //获取姓名文本框
+        var username = document.getElementById('username');
+        //获取年龄文本框
+        var age = document.getElementById('age');
+        //为按钮添加点击事件
+        btn.onclick = function(){
+            //创建ajax对象
+            var xhr = new XMLHttpRequest();
+            //获取姓名
+            var nameValue = username.value;
+            //获取年龄
+            var ageValue = age.value;
+            //拼接请求参数
+            var params = 'username='+nameValue+'&age='+ageValue;
+            //配置ajax对象
+            xhr.open('get','http://localhost:3000/get?'+params);
+            xhr.send();
+            xhr.onload = function(){
+                console.log(xhr.responseText);
+            }
+        }
+    </script>
+</body>
+</html>
